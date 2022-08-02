@@ -15,7 +15,7 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-	r.HandleFunc("adr", func(w http.ResponseWriter, r *http.Request) { w.Write([]byte(r.RemoteAddr)) })
+	r.HandleFunc("/adr", func(w http.ResponseWriter, r *http.Request) { w.Write([]byte(r.RemoteAddr)) })
 	s := http.Server{Addr: fmt.Sprintf("0.0.0.0:%s", port), Handler: r}
 	s.ListenAndServe()
 }
