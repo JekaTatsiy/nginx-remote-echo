@@ -18,17 +18,17 @@ func main() {
 	r.HandleFunc("/adr", func(w http.ResponseWriter, r *http.Request) {
 
 		w.Write([]byte(fmt.Sprintf("RemoteAddr: %s\n", r.RemoteAddr)))
-		
-		w.Write([]byte("RemoteAddr:\n"))
-		for _, h := range r.Header {
-			w.Write([]byte(fmt.Sprintf("%v", h)))
+
+		w.Write([]byte("Headers:\n"))
+		for k, h := range r.Header {
+			w.Write([]byte(fmt.Sprintf("%s: %v\n", k, h)))
 		}
 		w.Write([]byte{'\n'})
-		
+
 		r.ParseForm()
 		w.Write([]byte("Form Data:\n"))
 		for _, f := range r.Form {
-			w.Write([]byte(fmt.Sprintf("%v", f)))
+			w.Write([]byte(fmt.Sprintf("%v\n", f)))
 		}
 	})
 
